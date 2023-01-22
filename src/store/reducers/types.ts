@@ -1,8 +1,16 @@
-import { Mode } from "../types";
+export interface Square {
+  isActive: boolean;
+  position: number;
+}
+
+export interface Mode {
+  name: string;
+  field: number;
+}
 
 export interface InitialState {
-  data: Mode[] | null;
+  modes: Mode[] | null;
   error: any;
   status: string | null;
-  fields: { isActive: boolean }[];
+  fields: Square[];
 }

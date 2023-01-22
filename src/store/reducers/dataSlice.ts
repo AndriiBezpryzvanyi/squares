@@ -1,16 +1,15 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fieldSizeHandler } from "../../utils/fieldSizeHendler";
-import { Mode } from "../types";
 import { InitialState } from "./types";
 
 const initialState: InitialState = {
-  data: null,
+  modes: null,
   error: null,
   status: null,
   fields: [],
 };
 
-export const fetchModes = createAsyncThunk<Mode[]>(
+export const fetchModes = createAsyncThunk(
   "data/fetchModes",
   async function (_, { rejectWithValue }) {
     try {
@@ -30,11 +29,11 @@ export const dataSlice = createSlice({
   name: "dataSlice",
   initialState,
   reducers: {
-    hoverHandler: (state, action) => {
+    hoverHandler: (state, action: PayloadAction<number>) => {
       const field = state.fields[action.payload].isActive;
       state.fields[action.payload].isActive = !field;
     },
-    startHandler: (state, action) => {
+    startHandler: (state, action: PayloadAction<number>) => {
       state.fields = fieldSizeHandler(action.payload);
     },
   },
@@ -43,7 +42,7 @@ export const dataSlice = createSlice({
       state.status = "loading";
     });
     builder.addCase(fetchModes.fulfilled, (state, { payload }) => {
-      state.data = payload;
+      state.modes = payload;
       state.status = "resolved";
     });
     builder.addCase(fetchModes.rejected, (state, { payload }) => {
@@ -54,4 +53,4 @@ export const dataSlice = createSlice({
 });
 
 export const { hoverHandler, startHandler } = dataSlice.actions;
-export default dataSlice.reducer
+export default dataSlice.reducer;

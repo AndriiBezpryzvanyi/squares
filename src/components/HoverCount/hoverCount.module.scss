@@ -1,0 +1,50 @@
+@import "../../styles/variables";
+@import "../../styles/mixin";
+
+.container {
+  height: 465px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.title {
+  @include font($lato, 20px, 500);
+  width: 100%;
+  height: 35px;
+  color: $white;
+  padding-left: 3px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  overflow-y: auto;
+  width: 150px;
+
+  .info {
+    @include font($lato, 14px, 400);
+    @include flex(row, center, space-around);
+    color: $white;
+    border-radius: 7px;
+    border: solid 1px $yellow;
+    width: 120px;
+    margin: 5px;
+    min-height: 30px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $dark-gray;
+    border-radius: 7px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $yellow;
+    border-radius: 7px;
+  }
+}

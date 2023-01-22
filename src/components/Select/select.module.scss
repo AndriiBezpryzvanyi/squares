@@ -1,0 +1,54 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
+.container {
+  position: relative;
+}
+
+.input {
+  @include flex(row, center, space-between);
+  @include font($lato, 16px, 400);
+  width: 150px;
+  color: $white;
+  height: 30px;
+  border: solid 1px $light-gray;
+  border-radius: 7px;
+  padding: 5px 10px;
+  cursor: pointer;
+
+  svg {
+    transition: 0.3s;
+  }
+}
+
+.active {
+  border: solid 1px $yellow;
+  border-radius: 7px 7px 0 0;
+
+  svg {
+    transform: rotate(180deg);
+    path {
+      stroke: $yellow;
+    }
+  }
+}
+
+.list {
+  position: absolute;
+  border: solid 1px $yellow;
+  border-radius: 0 0 7px 7px;
+}
+
+.option {
+  @include flex(row, center, flex-start);
+  @include font($lato, 16px, 400);
+  width: 150px;
+  color: $white;
+  padding: 5px 10px;
+  height: 30px;
+
+  &:hover {
+    cursor: pointer;
+    color: $yellow;
+  }
+}

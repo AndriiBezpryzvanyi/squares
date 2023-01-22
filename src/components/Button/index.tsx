@@ -1,5 +1,13 @@
 import styles from "./button.module.scss";
 
-export const Button = () => {
-  return <button className={styles.button}>Start</button>;
+interface ButtonProps {
+  onClick: () => void;
+}
+
+export const Button = ({ onClick }: ButtonProps) => {
+  return (
+    <button className={styles.button} onClick={onClick}>
+      Start
+    </button>
+  );
 };
